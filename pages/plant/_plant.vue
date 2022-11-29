@@ -86,6 +86,8 @@ export default {
       maxMoist: null,
       minMoist: null,
       refresh_time: null,
+      endpoint: 'https://esplant.onrender.com',
+      // endpoint: 'http://localhost:5000',
     }
   },
   methods: {
@@ -194,7 +196,7 @@ export default {
 
     updateConfig() {
       axios
-        .put(`http://localhost:5000/api/esp_1/config`, {
+        .put(`${this.endpoint}/api/esp_1/config`, {
           maxMoist: this.maxMoist,
           minMoist: this.minMoist,
           refresh_time: this.refresh_time,
@@ -215,7 +217,7 @@ export default {
     createChart() {
       axios
         .get(
-          `http://localhost:5000/api/plant${this.$route.params.plant}/readings?amount=${this.amount}`
+          `${this.endpoint}/api/plant${this.$route.params.plant}/readings?amount=${this.amount}`
         )
         .then((res) => {
           this.refresh_time = res.data[res.data.length - 1].refresh_time
@@ -233,7 +235,7 @@ export default {
     updateChart() {
       axios
         .get(
-          `http://localhost:5000/api/plant${this.$route.params.plant}/readings?amount=${this.amount}`
+          `${this.endpoint}/api/plant${this.$route.params.plant}/readings?amount=${this.amount}`
         )
         .then((res) => {
           this.chartData = res.data
