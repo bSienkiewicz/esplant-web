@@ -86,6 +86,7 @@ export default {
       maxMoist: null,
       minMoist: null,
       refresh_time: null,
+      app_refresh_time: 5000,
       endpoint: 'https://esplant.onrender.com',
       // endpoint: 'http://localhost:5000',
     }
@@ -270,7 +271,7 @@ export default {
     this.createChart()
     this.interval = setInterval(() => {
       this.updateChart()
-    }, 2000)
+    }, this.app_refresh_time)
   },
   destroyed() {
     clearInterval(this.interval)
