@@ -6,7 +6,7 @@
           <div class="input-group">
             <div class="input-group__item">
               <label>Częstotliwość odczytu (s):</label>
-              <input type="number" v-model="refresh_time" />
+              <input type="number" v-model="refresh_time" min="0" max="100" />
             </div>
             <div class="input-group__item">
               <label>Minimalna wilgotność (%):</label>
@@ -20,17 +20,43 @@
               <label>Wysokość zbiornika (cm):</label>
               <input type="number" v-model="tank_height" />
             </div>
-            <div class="input-group__item">
-              <label>Impuls podlewania (s):</label>
-              <input type="number" v-model="pump_time" />
-            </div>
-            <span style="color: #888; font-style: italic; font-size: 12px"
-              >~{{
-                (110 * (this.pump_time / 3.6)).toFixed(2) > 1000
-                  ? (110 * (this.pump_time / 3600)).toFixed(2) + 'l'
-                  : (110 * (this.pump_time / 3.6)).toFixed(2) + 'ml'
-              }}</span
+            <div
+              class="converts"
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                border: 1px solid #ccc;
+                background: #f3f3f3;
+                padding: 10px;
+                border-radius: 5px;
+              "
             >
+              <div class="input-group__item">
+                <label>Impuls podlewania (s):</label>
+                <input
+                  type="number"
+                  v-model="pump_time"
+                  @input="convertTimeAndMl('time')"
+                />
+              </div>
+              <div class="input-group__item">
+                <label>Ilość wody na podlanie (ml):</label>
+                <input
+                  type="number"
+                  v-model="ml_poured"
+                  @input="convertTimeAndMl('ml')"
+                />
+              </div>
+              <span style="color: #888; font-style: italic; font-size: 12px"
+                >~{{
+                  (110 * (this.pump_time / 3.6)).toFixed(2) > 1000
+                    ? (110 * (this.pump_time / 3600)).toFixed(2) + 'l'
+                    : (110 * (this.pump_time / 3.6)).toFixed(2) + 'ml'
+                }}
+                - wydajność pompy 110l/h</span
+              >
+            </div>
 
             <div class="input-group__item">
               <label>Tryb Aquaman:</label>
@@ -108,12 +134,22 @@ export default {
       pump_time: null,
       tank_height: null,
       non_stop_pump: null,
+      ml_poured: null,
       app_refresh_time: 5000,
       endpoint: 'https://esplant.onrender.com',
       // endpoint: 'http://localhost:5000',
     }
   },
   methods: {
+    convertTimeAndMl(variable) {
+      if (variable === 'time') {
+        // 110L per hour,
+        this.ml_poured = (110 * (this.pump_time / 3.6)).toFixed(2)
+      } else if (variable === 'ml') {
+        // change ml to time in seconds (1ml = 0.0036s)
+        this.pump_time = (this.ml_poured / 110) * 3.6
+      }
+    },
     changePump() {
       this.chart.data.datasets[0].hidden = !this.chart.data.datasets[0].hidden
       this.chart.update()
