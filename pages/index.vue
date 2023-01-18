@@ -86,7 +86,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #e3f0e9;
+  background-color: #efefef;
 }
 
 * {
