@@ -1,68 +1,20 @@
-# Garduino
+# ESPlant Web App
 
-## Build Setup
+#### Project map:
+* **[ESP8266 code](https://github.com/bSienkiewicz/ESPlant)**
+- ***Web application***
+---
 
-```bash
-# install dependencies
-$ yarn install
+The ESPlant Dashboard is a Nuxt.js-based web application designed to monitor and manage plant-related data in real-time. As a part of the ESPlant system, this dashboard provides users with insights into soil moisture levels and water tank levels, displayed in graphical format. Users can configure thresholds for soil moisture and monitor historical data stored in a MongoDB database hosted on MongoDB Atlas. The dashboard communicates with the backend server to display live data and allow users to make configuration adjustments seamlessly.
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+# Features
+- Real-time Monitoring: Displays live data of soil moisture percentage and water tank level percentage.
+- Threshold Configuration: Allows users to set minimum and maximum thresholds for soil moisture.
+- Historical Data: Provides access to historical data stored in a MongoDB database for analysis.
+- User-friendly Interface: Simple and intuitive interface for easy navigation and data visualization.
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+# Project screenshot
+![image](https://github.com/bSienkiewicz/esplant-web/assets/50502786/fba2556c-aca7-4e31-a5f8-3edd0d56d6f0)
 
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+# Setup and Installation
+This project is not intended to be downloaded or ran on its own, as it requires setting up a MongoDB Cluster and backend deployment. However, if you're interested in exploring the source code, feel free to do so.
